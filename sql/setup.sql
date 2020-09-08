@@ -5,4 +5,13 @@ CREATE TABLE dogs (
     name TEXT NOT NULL,
     breed TEXT NOT NULL,
     age INT NOT NULL
-)
+);
+
+DROP TABLE IF EXISTS cats;
+
+CREATE TABLE cats (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    breed TEXT NOT NULL,
+    age INT NOT NULL
+);
