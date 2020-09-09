@@ -24,3 +24,12 @@ CREATE TABLE phones (
     brand TEXT NOT NULL,
     cost TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS computers;
+
+CREATE TABLE computers (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    brand TEXT NOT NULL,
+    cost TEXT NOT NULL
+);
