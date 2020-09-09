@@ -4,7 +4,6 @@ const pool = require('../lib/utils/pool.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Phone = require('../lib/models/phones.js');
-const { report } = require('../lib/app.js');
 
 describe('Phones routes', () => {
     beforeEach(() => {
@@ -89,5 +88,48 @@ describe('Phones routes', () => {
             brand: 'Samsung',
             cost: '$1,449.99'
         });
+    });
+
+    it('gets all phones in database using the GET route', async () => {
+        await Promise.all([
+            Phone.insert({
+                name: 'IPhone 11 64gb',
+                brand: 'Apple',
+                cost: '$749.00'
+            }),
+            Phone.insert({
+                name: 'IPhone 11 Pro 64gb',
+                brand: 'Apple',
+                cost: '$999.00'
+            }),
+            Phone.insert({
+                name: 'IPhone 11 Pro Max 64gb',
+                brand: 'Apple',
+                cost: '$1,099.00'
+            })
+
+        ]);
+
+        const response = await request(app)
+            .get('/api/phones');
+
+        expect(response.body).toEqual(expect.arrayContaining([
+            {
+                id: expect.any(Number),
+                name: 'IPhone 11 64gb',
+                brand: 'Apple',
+                cost: '$749.00'
+            }, {
+                id: expect.any(Number),
+                name: 'IPhone 11 Pro 64gb',
+                brand: 'Apple',
+                cost: '$999.00'
+            }, {
+                id: expect.any(Number),
+                name: 'IPhone 11 Pro Max 64gb',
+                brand: 'Apple',
+                cost: '$1,099.00'
+            }
+        ]));
     });
 });
