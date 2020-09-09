@@ -15,3 +15,12 @@ CREATE TABLE cats (
     breed TEXT NOT NULL,
     age INT NOT NULL
 );
+
+DROP TABLE IF EXISTS phones;
+
+CREATE TABLE phones (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    brand TEXT NOT NULL,
+    cost TEXT NOT NULL
+);
