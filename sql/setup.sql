@@ -33,3 +33,13 @@ CREATE TABLE computers (
     brand TEXT NOT NULL,
     cost TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS songs;
+
+CREATE TABLE songs (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    singer TEXT NOT NULL,
+    producer TEXT NOT NULL,
+    album TEXT NOT NULL
+);
